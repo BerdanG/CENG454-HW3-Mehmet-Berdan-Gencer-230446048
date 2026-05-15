@@ -3,6 +3,7 @@ using UnityEngine;
 public class CoreHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] int maxHealth = 100;
+
     int currentHealth;
 
     void Start()
@@ -14,19 +15,15 @@ public class CoreHealth : MonoBehaviour, IDamageable
     {
         currentHealth -= amount;
 
-        Debug.Log("Core took damage: " + amount + " | Remaining: " + currentHealth);
+        Debug.Log("Core took damage: " + amount);
+
+        GameEvents.OnCoreDamaged?.Invoke(currentHealth);
 
         if (currentHealth <= 0)
         {
             Debug.Log("CORE DESTROYED");
-        }
-    }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(10);
+            GameEvents.OnCoreDestroyed?.Invoke();
         }
     }
 }
