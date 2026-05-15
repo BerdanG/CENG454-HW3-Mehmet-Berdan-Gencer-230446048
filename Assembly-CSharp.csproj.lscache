@@ -62,6 +62,9 @@ Assets/Scripts/
  Player/PlayerController.cs
  Projectile/Projectile.cs
  Spawner/EnemySpawner.cs
+ Strategy/
+  CoreAttackStrategy.cs
+  PlayerChaseStrategy.cs
  UI/CoreHealthUI.cs
 Temp/obj/Assembly-CSharp/.NETStandard,Version=v2.1.AssemblyAttributes.cs
 

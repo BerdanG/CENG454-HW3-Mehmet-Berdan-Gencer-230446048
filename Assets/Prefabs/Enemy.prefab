@@ -155,5 +155,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c08e7d73afe9584681323a2ddd43a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  moveSpeed: 3
   damageAmount: 10
+  targetPlayer: 0

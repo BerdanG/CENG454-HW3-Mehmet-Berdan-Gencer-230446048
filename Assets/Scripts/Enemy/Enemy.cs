@@ -2,23 +2,26 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 3f;
     [SerializeField] int damageAmount = 10;
+    [SerializeField] bool targetPlayer;
 
-    Transform coreTarget;
+    IAttackStrategy attackStrategy;
 
     void Start()
     {
-        coreTarget = GameObject.FindGameObjectWithTag("Core").transform;
+        if (targetPlayer)
+        {
+            attackStrategy = new PlayerChaseStrategy();
+        }
+        else
+        {
+            attackStrategy = new CoreAttackStrategy();
+        }
     }
 
     void Update()
     {
-        if (coreTarget == null) return;
-
-        Vector3 direction = (coreTarget.position - transform.position).normalized;
-
-        transform.Translate(direction * moveSpeed * Time.deltaTime, Space.World);
+        attackStrategy?.Attack(transform);
     }
 
     void OnTriggerEnter(Collider other)
