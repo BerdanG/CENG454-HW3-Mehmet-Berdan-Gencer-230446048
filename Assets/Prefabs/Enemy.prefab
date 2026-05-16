@@ -157,3 +157,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   damageAmount: 10
   targetPlayer: 0
+  moveSpeed: 3

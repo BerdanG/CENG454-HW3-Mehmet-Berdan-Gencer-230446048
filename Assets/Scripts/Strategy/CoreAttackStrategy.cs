@@ -2,14 +2,12 @@ using UnityEngine;
 
 public class CoreAttackStrategy : IAttackStrategy
 {
-    public void Attack(Transform origin)
+    public void Attack(Transform origin, Transform target)
     {
-        GameObject core = GameObject.FindGameObjectWithTag("Core");
-
-        if (core == null) return;
+        if (target == null) return;
 
         Vector3 direction =
-            (core.transform.position - origin.position).normalized;
+            (target.position - origin.position).normalized;
 
         origin.Translate(direction * 3f * Time.deltaTime, Space.World);
     }
