@@ -60,6 +60,7 @@ Assets/Scripts/
   IAttackStrategy.cs
   IDamageable.cs
  Player/PlayerController.cs
+ Pool/ProjectilePool.cs
  Projectile/Projectile.cs
  Spawner/EnemySpawner.cs
  Strategy/

@@ -15,10 +15,11 @@ public class PlayerShooter : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(
-            projectilePrefab,
-            firePoint.position,
-            firePoint.rotation
-        );
+        GameObject projectile =
+            ProjectilePool.Instance.GetProjectile();
+
+        projectile.transform.position = firePoint.position;
+
+        projectile.transform.rotation = firePoint.rotation;
     }
 }
