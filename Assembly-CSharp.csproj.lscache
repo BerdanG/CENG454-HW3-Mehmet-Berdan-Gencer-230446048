@@ -67,6 +67,11 @@ Assets/Scripts/
   CoreAttackStrategy.cs
   PlayerChaseStrategy.cs
  UI/CoreHealthUI.cs
+ Weapons/
+  BasicWeapon.cs
+  DoubleShotDecorator.cs
+  IWeapon.cs
+  WeaponDecorator.cs
 Temp/obj/Assembly-CSharp/.NETStandard,Version=v2.1.AssemblyAttributes.cs
 
 [metadataReferences]

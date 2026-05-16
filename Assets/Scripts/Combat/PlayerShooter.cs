@@ -2,24 +2,23 @@ using UnityEngine;
 
 public class PlayerShooter : MonoBehaviour
 {
-    [SerializeField] GameObject projectilePrefab;
     [SerializeField] Transform firePoint;
+
+    IWeapon currentWeapon;
+
+    void Start()
+    {
+        currentWeapon =
+            new DoubleShotDecorator(
+                new BasicWeapon()
+            );
+    }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot();
+            currentWeapon.Shoot(firePoint);
         }
-    }
-
-    void Shoot()
-    {
-        GameObject projectile =
-            ProjectilePool.Instance.GetProjectile();
-
-        projectile.transform.position = firePoint.position;
-
-        projectile.transform.rotation = firePoint.rotation;
     }
 }
