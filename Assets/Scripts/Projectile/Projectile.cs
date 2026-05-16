@@ -5,13 +5,22 @@ public class Projectile : MonoBehaviour
     [SerializeField] float speed = 10f;
     [SerializeField] float lifetime = 3f;
 
-    void Start()
+    float timer;
+
+    void OnEnable()
     {
-        Destroy(gameObject, lifetime);
+        timer = lifetime;
     }
 
     void Update()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
+        timer -= Time.deltaTime;
+
+        if (timer <= 0f)
+        {
+            ProjectilePool.Instance.ReturnProjectile(gameObject);
+        }
     }
 }

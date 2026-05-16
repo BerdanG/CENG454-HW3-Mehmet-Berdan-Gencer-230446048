@@ -60,12 +60,18 @@ Assets/Scripts/
   IAttackStrategy.cs
   IDamageable.cs
  Player/PlayerController.cs
+ Pool/ProjectilePool.cs
  Projectile/Projectile.cs
  Spawner/EnemySpawner.cs
  Strategy/
   CoreAttackStrategy.cs
   PlayerChaseStrategy.cs
  UI/CoreHealthUI.cs
+ Weapons/
+  BasicWeapon.cs
+  DoubleShotDecorator.cs
+  IWeapon.cs
+  WeaponDecorator.cs
 Temp/obj/Assembly-CSharp/.NETStandard,Version=v2.1.AssemblyAttributes.cs
 
 [metadataReferences]
