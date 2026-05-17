@@ -551,6 +551,7 @@ GameObject:
   - component: {fileID: 811846145}
   - component: {fileID: 811846149}
   - component: {fileID: 811846150}
+  - component: {fileID: 811846151}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -680,6 +681,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerShooter
   firePoint: {fileID: 773436447}
+--- !u!114 &811846151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811846144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 185223c2e421ba04d9c0268c0639eea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 100
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,6 +948,7 @@ MonoBehaviour:
   spawnInterval: 2
   spawnRangeX: 20
   spawnRangeZ: 10
+  maxEnemyCount: 30
 --- !u!4 &1564695913
 Transform:
   m_ObjectHideFlags: 0
