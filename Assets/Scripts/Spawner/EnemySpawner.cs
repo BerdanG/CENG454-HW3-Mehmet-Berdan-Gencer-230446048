@@ -6,6 +6,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float spawnInterval = 2f;
     [SerializeField] float spawnRangeX = 20f;
     [SerializeField] float spawnRangeZ = 10f;
+    [SerializeField] int maxEnemyCount = 30;
+
+    int currentEnemyCount;
 
 
     void Start()
@@ -14,8 +17,31 @@ public class EnemySpawner : MonoBehaviour
     }
 
 
+    void OnDisable()
+    {
+        GameEvents.OnEnemyDestroyed -= HandleEnemyDestroyed;
+    }
+
+
+    void OnEnable()
+    {
+        GameEvents.OnEnemyDestroyed += HandleEnemyDestroyed;
+    }
+
+
+    void HandleEnemyDestroyed()
+    {
+        currentEnemyCount--;
+    }
+
+
     void SpawnEnemy()
     {
+        if (currentEnemyCount >= maxEnemyCount)
+        {
+            return;
+        }
+
         Vector3 randomOffset = new Vector3
         (
             Random.Range(-spawnRangeX, spawnRangeX),
@@ -31,6 +57,8 @@ public class EnemySpawner : MonoBehaviour
             spawnPosition,
             Quaternion.identity
         );
+
+        currentEnemyCount++;
 
         Enemy enemyScript = enemy.GetComponent<Enemy>();
 

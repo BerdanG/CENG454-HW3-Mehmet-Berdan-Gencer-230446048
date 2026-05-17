@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
 
     Transform currentTarget;
 
+
     void Start()
     {
         if (targetPlayer)
@@ -41,6 +42,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
     void Update()
     {
         attackStrategy?.Attack
@@ -51,6 +53,7 @@ public class Enemy : MonoBehaviour
         );
     }
 
+
     void OnTriggerEnter(Collider other)
     {
         IDamageable damageable = other.GetComponent<IDamageable>();
@@ -58,7 +61,15 @@ public class Enemy : MonoBehaviour
         if (damageable != null)
         {
             damageable.TakeDamage(damageAmount);
-            Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
+            GameObject explosion = Instantiate
+            (
+                explosionEffectPrefab,
+                transform.position,
+                Quaternion.identity
+            );
+
+            Destroy(explosion, 2f);
+            GameEvents.OnEnemyDestroyed?.Invoke();
             Destroy(gameObject);
         }
     }
