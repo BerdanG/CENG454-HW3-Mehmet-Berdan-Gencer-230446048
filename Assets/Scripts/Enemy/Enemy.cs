@@ -5,6 +5,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] int damageAmount = 10;
     [SerializeField] float moveSpeed = 3f;
     [SerializeField] GameObject explosionEffectPrefab;
+    [SerializeField] GameObject playerHitEffectPrefab;
 
     bool targetPlayer;
 
@@ -56,7 +57,26 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Projectile"))
+        {
+            return;
+        }
+        
         IDamageable damageable = other.GetComponent<IDamageable>();
+
+        if (other.CompareTag("Player"))
+        {
+            if (playerHitEffectPrefab != null)
+            {
+                GameObject hitEffect = Instantiate(
+                    playerHitEffectPrefab,
+                    transform.position,
+                    Quaternion.identity
+                );
+
+                Destroy(hitEffect, 2f);
+            }
+        }
 
         if (damageable != null)
         {
@@ -69,7 +89,6 @@ public class Enemy : MonoBehaviour
             );
 
             Destroy(explosion, 2f);
-            GameEvents.OnEnemyDestroyed?.Invoke();
             Destroy(gameObject);
         }
     }
