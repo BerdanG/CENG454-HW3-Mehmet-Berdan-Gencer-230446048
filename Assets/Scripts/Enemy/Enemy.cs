@@ -3,8 +3,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] int damageAmount = 10;
-    [SerializeField] bool targetPlayer;
     [SerializeField] float moveSpeed = 3f;
+
+    bool targetPlayer;
 
     IAttackStrategy attackStrategy;
 
@@ -40,7 +41,12 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        attackStrategy?.Attack(transform, currentTarget);
+        attackStrategy?.Attack
+        (
+            transform,
+            currentTarget,
+            moveSpeed
+        );
     }
 
     void OnTriggerEnter(Collider other)
@@ -54,5 +60,10 @@ public class Enemy : MonoBehaviour
 
             Destroy(gameObject);
         }
+    }
+
+    public void SetTargetPlayer(bool value)
+    {
+        targetPlayer = value;
     }
 }

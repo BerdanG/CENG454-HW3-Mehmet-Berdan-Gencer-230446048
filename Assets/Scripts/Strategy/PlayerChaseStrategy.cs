@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerChaseStrategy : IAttackStrategy
 {
-    public void Attack(Transform origin, Transform target)
+    public void Attack(Transform origin, Transform target, float moveSpeed)
     {
         if (target == null) return;
 
