@@ -16,6 +16,12 @@ public class PlayerShooter : MonoBehaviour
 
     void Update()
     {
+        if (GameStateManager.CurrentState == GameState.Lost
+            || GameStateManager.CurrentState == GameState.Won)
+        {
+            return;
+        }
+        
         if (Input.GetMouseButtonDown(0))
         {
             currentWeapon.Shoot(firePoint);

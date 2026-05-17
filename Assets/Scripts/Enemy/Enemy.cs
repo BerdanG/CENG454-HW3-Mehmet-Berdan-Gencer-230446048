@@ -89,7 +89,6 @@ public class Enemy : MonoBehaviour
             );
 
             Destroy(explosion, 2f);
-            GameEvents.OnEnemyDestroyed?.Invoke();
             Destroy(gameObject);
         }
     }
