@@ -4,6 +4,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] int damageAmount = 10;
     [SerializeField] float moveSpeed = 3f;
+    [SerializeField] GameObject explosionEffectPrefab;
 
     bool targetPlayer;
 
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour
                 currentTarget = player.transform;
             }
         }
+        
         else
         {
             attackStrategy = new CoreAttackStrategy();
@@ -51,13 +53,12 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        IDamageable damageable =
-            other.GetComponent<IDamageable>();
+        IDamageable damageable = other.GetComponent<IDamageable>();
 
         if (damageable != null)
         {
             damageable.TakeDamage(damageAmount);
-
+            Instantiate(explosionEffectPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
