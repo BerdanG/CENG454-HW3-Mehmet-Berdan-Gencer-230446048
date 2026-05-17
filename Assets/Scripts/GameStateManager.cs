@@ -1,13 +1,14 @@
 using UnityEngine;
+using TMPro;
 
 public class GameStateManager : MonoBehaviour
 {
-    public static GameState CurrentState
-        = GameState.Playing;
+    public static GameState CurrentState = GameState.Playing;
 
     [SerializeField] GameObject gameOverText;
     [SerializeField] GameObject winText;
     [SerializeField] int enemiesToDefeat = 20;
+    [SerializeField] TMP_Text objectiveText;
 
     int defeatedEnemies;
 
@@ -24,8 +25,9 @@ public class GameStateManager : MonoBehaviour
 
         gameOverText.SetActive(false);
         winText.SetActive(false);
+        UpdateObjectiveText();
     }
-    
+
     void OnDisable()
     {
         GameEvents.OnCoreDestroyed -= HandleLose;
@@ -43,9 +45,20 @@ public class GameStateManager : MonoBehaviour
         CurrentState = GameState.Lost;
 
         gameOverText.SetActive(true);
+        objectiveText.gameObject.SetActive(false);
 
         Debug.Log("GAME OVER");
     }
+
+
+    void UpdateObjectiveText()
+    {
+        objectiveText.text =
+            "Survive " + enemiesToDefeat +
+            " enemies\nEnemies defeated: " +
+            defeatedEnemies + "/" + enemiesToDefeat;
+    }
+
 
     void HandleEnemyDestroyed()
     {
@@ -55,12 +68,14 @@ public class GameStateManager : MonoBehaviour
         }
 
         defeatedEnemies++;
+        UpdateObjectiveText();
 
         if (defeatedEnemies >= enemiesToDefeat)
         {
             CurrentState = GameState.Won;
 
             winText.SetActive(true);
+            objectiveText.gameObject.SetActive(false);
 
             Debug.Log("YOU WIN");
         }

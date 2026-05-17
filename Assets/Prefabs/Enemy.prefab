@@ -173,3 +173,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 30
+  deathEffectPrefab: {fileID: 1408494293829344170, guid: 77e5af1b4208a3e44b1b41d271287dcc, type: 3}
