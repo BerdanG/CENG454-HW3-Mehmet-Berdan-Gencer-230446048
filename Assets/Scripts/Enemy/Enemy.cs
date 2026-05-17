@@ -3,12 +3,15 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] int damageAmount = 10;
-    [SerializeField] bool targetPlayer;
     [SerializeField] float moveSpeed = 3f;
+    [SerializeField] GameObject explosionEffectPrefab;
+
+    bool targetPlayer;
 
     IAttackStrategy attackStrategy;
 
     Transform currentTarget;
+
 
     void Start()
     {
@@ -24,6 +27,7 @@ public class Enemy : MonoBehaviour
                 currentTarget = player.transform;
             }
         }
+        
         else
         {
             attackStrategy = new CoreAttackStrategy();
@@ -38,21 +42,40 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
     void Update()
     {
-        attackStrategy?.Attack(transform, currentTarget);
+        attackStrategy?.Attack
+        (
+            transform,
+            currentTarget,
+            moveSpeed
+        );
     }
+
 
     void OnTriggerEnter(Collider other)
     {
-        IDamageable damageable =
-            other.GetComponent<IDamageable>();
+        IDamageable damageable = other.GetComponent<IDamageable>();
 
         if (damageable != null)
         {
             damageable.TakeDamage(damageAmount);
+            GameObject explosion = Instantiate
+            (
+                explosionEffectPrefab,
+                transform.position,
+                Quaternion.identity
+            );
 
+            Destroy(explosion, 2f);
+            GameEvents.OnEnemyDestroyed?.Invoke();
             Destroy(gameObject);
         }
+    }
+
+    public void SetTargetPlayer(bool value)
+    {
+        targetPlayer = value;
     }
 }

@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2e91b70d4e3b41440b5f0b726b653591, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -156,5 +156,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   damageAmount: 10
-  targetPlayer: 0
   moveSpeed: 3
+  explosionEffectPrefab: {fileID: 1408494293829344170, guid: 77e5af1b4208a3e44b1b41d271287dcc, type: 3}

@@ -13,6 +13,11 @@ public class CoreHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(int amount)
     {
+        if (currentHealth <= 0)
+        {
+            return;
+        }
+
         currentHealth -= amount;
 
         Debug.Log("Core took damage: " + amount);

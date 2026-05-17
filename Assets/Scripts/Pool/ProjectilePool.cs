@@ -12,6 +12,12 @@ public class ProjectilePool : MonoBehaviour
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
 
         for (int i = 0; i < poolSize; i++)
